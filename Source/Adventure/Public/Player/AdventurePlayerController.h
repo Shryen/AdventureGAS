@@ -5,6 +5,7 @@
 #include "GameFramework/PlayerController.h"
 #include "AdventurePlayerController.generated.h"
 
+class UAdventureInputConfig;
 class UAdventureAbilitySystemComponent;
 struct FGameplayTag;
 class UInputAction;
@@ -51,6 +52,9 @@ private:
 	/*
 	 * Input Functions End
 	 */
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UAdventureInputConfig> InputConfig;
 
 	UPROPERTY()
 	TObjectPtr<UAdventureAbilitySystemComponent> AdventureAbilitySystemComponent;

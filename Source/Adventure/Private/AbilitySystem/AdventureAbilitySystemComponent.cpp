@@ -11,6 +11,7 @@ void UAdventureAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& I
 	{
 		if(AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag))
 		{
+			UE_LOG(LogTemp, Warning, TEXT("InputTag in ASC: %s"), *InputTag.ToString())
 			AbilitySpecInputPressed(AbilitySpec);
 			if(!AbilitySpec.IsActive())
 			{

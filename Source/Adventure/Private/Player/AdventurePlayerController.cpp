@@ -28,6 +28,10 @@ void AAdventurePlayerController::SetupInputComponent()
 	UAdventureInputComponent* AdventureInputComponent = CastChecked<UAdventureInputComponent>(InputComponent);
 	AdventureInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAdventurePlayerController::Move);
 	AdventureInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAdventurePlayerController::Look);
+	AdventureInputComponent->BindAbilityActions(InputConfig, this,
+		&ThisClass::AbilityInputTagPressed,
+		&ThisClass::AbilityInputTagReleased,
+		&ThisClass::AbilityInputTagHeld);
 }
 
 UAdventureAbilitySystemComponent* AAdventurePlayerController::GetASC()
@@ -78,4 +82,5 @@ void AAdventurePlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 void AAdventurePlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
 	if(GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
+	UE_LOG(LogTemp, Warning, TEXT("InputTag Pressed: %s"), *InputTag.ToString());
 }
