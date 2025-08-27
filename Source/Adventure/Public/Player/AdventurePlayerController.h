@@ -5,6 +5,10 @@
 #include "GameFramework/PlayerController.h"
 #include "AdventurePlayerController.generated.h"
 
+class UAdventureAbilitySystemComponent;
+struct FGameplayTag;
+class UInputAction;
+class UInputMappingContext;
 struct FInputActionValue;
 /**
  * 
@@ -17,8 +21,37 @@ public:
 	AAdventurePlayerController();
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
-
+	UAdventureAbilitySystemComponent* GetASC();
 private:
+	/*
+	 * Input Actions Start
+	 */
+	UPROPERTY(EditDefaultsOnly, Category="Input")
+	TObjectPtr<UInputMappingContext> AdventureMappingContext;
+
+	UPROPERTY(EditDefaultsOnly, Category="Input|Actions")
+	TObjectPtr<UInputAction> MoveAction;
+
+	UPROPERTY(EditDefaultsOnly, Category="Input|Actions")
+	TObjectPtr<UInputAction> LookAction;
+	/*
+	 * Input Actions End
+	 */
+
+	/*
+	 * Input Functions start
+	 */
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
+
+	/*
+	 * Input Functions End
+	 */
+
+	UPROPERTY()
+	TObjectPtr<UAdventureAbilitySystemComponent> AdventureAbilitySystemComponent;
 };

@@ -11,6 +11,6 @@ class ADVENTURE_API UAdventureAbilitySystemComponent : public UAbilitySystemComp
 	GENERATED_BODY()
 
 public:
-	UAdventureAbilitySystemComponent();
-	
+	void AbilityInputTagHeld(const FGameplayTag& InputTag);
+	void AbilityInputTagReleased(const FGameplayTag& InputTag);
 };
