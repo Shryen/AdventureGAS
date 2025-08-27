@@ -1,5 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+#include "Player/AdventurePlayerController.h"
 
+AAdventurePlayerController::AAdventurePlayerController()
+{
+	bReplicates = true;
+}
 
-#include "Pklayer/AdventurePlayerController.h"
-
+void AAdventurePlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+	
+}
