@@ -1,5 +1,7 @@
 ﻿#include "AbilitySystem/AdventureAbilitySystemComponent.h"
 
+#include "AbilitySystem/AdventureGameplayAbility.h"
+
 
 void UAdventureAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& InputTag)
 {
@@ -30,3 +32,17 @@ void UAdventureAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTa
 		}
 	}
 }
+
+void UAdventureAbilitySystemComponent::AddCharacterAbilities(TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities)
+{
+	for(const TSubclassOf<UGameplayAbility> AbilityClass : StartupAbilities)
+	{
+		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClass, 1);
+		if(const UAdventureGameplayAbility* AdventureAbility = Cast<UAdventureGameplayAbility>(AbilitySpec.Ability))
+		{
+			AbilitySpec.GetDynamicSpecSourceTags().AddTag(AdventureAbility->StartupInputTag);
+			GiveAbility(AbilitySpec);
+		}
+	}
+}
+

@@ -13,4 +13,6 @@ class ADVENTURE_API UAdventureAbilitySystemComponent : public UAbilitySystemComp
 public:
 	void AbilityInputTagHeld(const FGameplayTag& InputTag);
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);
+
+	void AddCharacterAbilities(TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
 };
